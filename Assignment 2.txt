@@ -1,0 +1,265 @@
+
+
+
+
+BDD testcases for compose E-mail feature
+
+
+1.scenario->Send an email
+Given that the user is logged in to the g-mail
+When the user click on compose
+And compose window is open
+When the user enters a valid recipient email address
+And the user enters a subject
+And the user enters the email body
+And the user clicks on the send button
+Expected result-> the email should be sent successfully and a confirmation message should be displayed
+
+2.scenario->Send e-mail without a recipient
+When the user is on the Compose e-mail page
+When the user enters a subject line
+And the user enters the email body
+and the user clicks the Send button  with the To field left empty
+then an error message recipient is required is displayed
+Expected result: the email is not sent and the user sees a clear error pointing to the missing recipient field
+
+3.Scenario->Send an e-mail with invalid mail id
+When  the user is on the Compose e-mail section
+When the user enters an invalid email address
+then the user enters a subject
+And the user added the content in the body
+And the user clicks the send mail  button
+Expected result->it should display an error message
+
+
+4.Scenario->Send email to multiple recipients
+Given the compose window is open
+When the user types more than one mail id’s  in the To field separated by commas
+Then two recipient chips should appear
+And one chip should display one mail id
+And another chip should display another mail ids
+Expected result->The user can proceed with composing and sending the email
+
+5.Scenario->File attaches successfully
+Given the compose window is open
+When the user attaches a pdf
+Then an upload progress indicator appears
+And an attachment chip displaying pdf  appears below the toolbar
+Expected result->User should be able to attach file and send
+
+6.Scenario->User can remove the attachment
+Given pdf file  is already attached to the email
+When the user clicks the remove icon on the attachment chip
+Then the attachment chip disappears
+And the file is removed from the email
+
+7.Scenario-> Send email with empty subject
+Given a valid recipient and body are entered
+And the subject field is empty
+When the user clicks send
+Then a warning about the empty subject is displayed
+And the user can choose to send or cancel
+Expected result->A warning prompt about the empty subject is displayed, allowing the user to either send the email anyway or return to editing.
+
+8.Scenario-> Unsupported file type attachment
+Given the compose window is open
+When the user attempts to attach an unsupported file type
+Then an error message is displayed
+And the file is not attached
+
+9.Scenario-> Remove attachment during upload
+Given a file upload is in progress
+When the user clicks the remove icon
+Then the upload is cancelled
+And the attachment is removed from the email
+Expected result->The upload process is cancelled immediately and the attachment is removed from the compose window.
+
+10.Scenario->Discard composed mail
+
+Given the user has composed an email
+When the user clicks on discard
+Then the email content should be removed
+And the compose window should close
+
+11.Scenario-> Send email with CC and BCC
+Given the user is on the Compose Email page
+  When the user enters valid recipient, CC, and BCC email addresses
+  And enters a subject and body
+  And clicks on send
+  Then the email should be sent successfully
+  And all recipients should receive the email
+
+12. Scenario-> Save email as draft
+  Given the user is on the Compose Email page
+  When the user enters recipient details
+  And the user enters a subject
+  And the user enters the email body
+  And the user clicks on save draft or go to any other mails
+ expected result-> the email should be saved in Drafts folder
+
+13. Scenario->Send email with only recipient and subject
+Given the compose window is open
+When the user enters a valid recipient email address
+And enters a subject
+And leaves the email body empty
+And clicks the Send button
+Then the email should be sent successfully
+Expected Result-> Email is sent successfully even without body content.
+
+14. Scenario-> Maximum subject length validation
+Given the compose window is open
+When the user enters a subject exceeding the maximum allowed length
+And enters recipient and body details
+And clicks Send
+Then the system should handle the input appropriately
+Expected Result-> Subject is truncated or validation message is displayed according to requirements.
+
+15. Scenario-> Recover auto-saved draft
+Given an auto-saved draft exists
+When the user opens the Drafts folder
+And selects the draft email
+Then all previously entered content should be restored
+Expected Result-> Recipient, subject, body, and attachments are displayed correctly.
+16. Scenario-> Attach multiple files
+Given the compose window is open
+When the user selects multiple valid files for attachment
+Then all selected files should be uploaded successfully
+And attachment chips should be displayed for each file
+Expected Result-> Multiple files are attached successfully and can be sent with the email.
+
+17. Scenario-> Attachment size exceeds limit
+Given the compose window is open
+When the user attempts to attach a file larger than the allowed size limit
+Then an error message should be displayed
+And the file should not be attached
+Expected Result->User is informed that the file exceeds the maximum attachment size.
+
+18. Scenario->Verify recipient email suggestion
+Given the compose window is open
+When the user starts typing an email address in the To field
+Then matching contacts should be displayed as suggestions
+Expected Result-> Relevant contact suggestions appear and can be selected.
+
+19. Scenario-> Remove recipient from To field
+Given one or more recipients are added
+When the user clicks the remove icon on a recipient chip
+Then the selected recipient should be removed
+Expected Result-> Recipient chip disappears and email is not sent to that recipient.
+
+20. Scenario-> Close compose window and continue later
+Given the user has entered email content
+When the user closes or minimizes the compose window
+Then the email content should be preserved
+Expected Result-> User can reopen the compose window and continue editing without losing data.
+
+21. Scenario-> Send email after attachment upload completes
+Given a file is attached and upload is completed
+When the user enters valid recipient, subject, and body details
+And clicks Send
+Then the email should be sent successfully with the attachment
+Expected Result->Recipient receives the email along with the attached file.
+
+22. Scenario-> Internet connection lost while sending email
+Given the email is ready to be sent
+When the internet connection is lost during sending
+Then an appropriate error message should be displayed
+And the email should be saved as a draft
+Expected Result-> Email is not lost and can be resent once connectivity is restored.
+
+23. Scenario-> Verify keyboard shortcut for sending email
+Given the compose window is open
+When the user presses Ctrl + Enter 
+Then the email should be sent successfully
+Expected Result->Email is sent using the keyboard shortcut.
+
+24. Scenario->Verify spell-check suggestions
+Given the compose window is open
+When the user types a misspelled word in the email body
+Then the word should be highlighted
+And correction suggestions should be displayed
+Expected Result-> User receives spelling suggestions before sending the email.
+
+25. Scenario->Send email to a large number of recipients
+Given the compose window is open
+When the user enters the maximum allowed number of recipients
+And enters subject and body details
+And clicks Send
+Then the email should be sent successfully
+Expected Result->Email is delivered to all recipients within the allowed limit.
+
+26. Scenario->Verify attachment download from received email
+Given an email with an attachment has been sent successfully
+When the recipient opens the email
+And downloads the attachment
+Then the file should download successfully and open correctly
+Expected Result->Attachment integrity is maintained after sending and downloading.
+
+27. Scenario->Save draft with attachment
+Given the user has added recipient details, subject, body, and attachment
+When the user saves the email as a draft
+Then all entered information including the attachment should be saved
+Expected Result-> Draft contains recipient details, subject, body, and attachments when reopened.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Manual-2 days
+Playwright-10day
+SQL-2
+API-3
+Mock
+mock
+
+
+
+let a=10
+let b=3
+console.log(a+b)
+console.log(a-b)
+console.log(a*b)
+console.log(a/b)
+console.log(a**b)
+console.log(a%b)
+i=10
+//a=i++
+a=++i
+console.log(a)
+console.log(i)
+//--
+a=8
+x=-a
+
+//+=
+
+
+
+
+
+
+
+
+
+
+
